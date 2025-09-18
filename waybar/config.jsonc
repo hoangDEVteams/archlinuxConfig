@@ -1,0 +1,165 @@
+[ {
+    "position": "top", "layer": "top", 
+    "margin-top": 0, "margin-bottom": 0, "margin-left": 0, 
+    "margin-right": 0,
+
+    "modules-left": ["custom/launcher", "hyprland/workspaces", 
+    "custom/playerctl", "custom/playerlabel"], 
+    "modules-center": ["clock#combo"],
+    "modules-right": ["tray", 
+    "custom/randwall", "network", "pulseaudio#speaker", 
+    "custom/mic", "battery"],
+
+"clock#combo": {
+    "timezone": "Asia/Ho_Chi_Minh",
+    "format": "{:%H:%M  •  %d/%m/%Y}",
+    "on-click": "gsimplecal",
+    "tooltip-format": "<big><span color='#d79921'><b>{:%A, %d/%m/%Y • %H:%M}</b></span></big>\n\n<small>{calendar}</small>",
+    "calendar": {
+      "mode-mon-col": 3,
+      "format": {
+        "months":   "<span size='large' color='#d3869b'><b>{}</b></span>",
+        "weekdays": "<span color='#83a598'><b>{}</b></span>",
+        "weeks":    "<span color='#fabd2f'><b>W{}</b></span>",
+        "days":     "<span color='#ebdbb2'>{}</span>",
+        "today":    "<span background='#b8bb26' color='#1d2021'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up":   "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+
+    "hyprland/workspaces": { "active-only": false, 
+      "all-outputs": true, "disable-scroll": false, 
+      "on-scroll-up": "hyprctl dispatch workspace -1", 
+      "on-scroll-down": "hyprctl dispatch workspace +1", 
+      "format": "{icon}", "on-click": "activate", 
+      "sort-by-number": true, "format-icons": { "urgent": "", 
+      "active": "", "default": "󰧞" },
+      "min-length" : 5,
+      "align": 0.5
+    },
+
+"custom/playerctl": {
+      "format": "{icon}",
+      "return-type": "json",
+      "max-length": 64,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      },
+    },
+
+"custom/playerlabel": {
+      "format": "<span>{}</span>",
+      "return-type": "json",
+      "max-length": 48,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      },
+    },
+
+  
+
+    "tray": { "icon-size": 16, "spacing": 3 },
+
+"custom/randwall": {
+  "format": "",
+  "tooltip": "Left: chọn ảnh | Right: ảnh ngẫu nhiên",
+  "on-click": "~/.config/waybar/scripts/wallpicker.sh",
+  "on-click-right": "~/.config/waybar/scripts/wall-random.sh",
+  "min-length": 3
+},
+
+   "network": {
+     "format-wifi": "󰤨",
+     "format-ethernet": "󰈁",
+     "format-linked": "󰈁 {ifname} (No IP)",
+     "format-disconnected": "󰤭",
+     "format-alt": "{ifname}:{ipaddr}",   // bỏ khoảng trắng và bỏ /{cidr}
+     "tooltip-format": "{essid}",
+     "on-click-right": "nm-connection-editor",
+     "min-length": 3,
+     "align": 0.5
+   },
+
+
+"pulseaudio#speaker": {
+  "format": "{icon}\u2007 {volume}%",
+  "format-muted": "{icon}\u2007 {volume}%",
+  "format-icons": { "default": ["󰕿","󰖀","󰕾"], "muted": "󰝟" },
+
+  // NHẤP TRÁI: toggle mute loa (1 dòng, không xuống dòng!)
+  "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+
+  // CUỘN LÊN/XUỐNG: tăng/giảm 1%, chặn max 100%
+  "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+",
+  "on-scroll-down": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%-",
+
+  // NHẤP PHẢI: mở pavucontrol (nếu có)
+  "on-click-right": "pavucontrol",
+
+  "scroll-step": 5
+},
+
+"custom/mic": {
+  "return-type": "json",
+  "exec": "bash -lc '$HOME/.config/waybar/scripts/mic_status.sh'",
+  "exec-if": "bash -lc '$HOME/.config/waybar/scripts/mic_is_active.sh'",
+  "interval": 2,
+  "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+  "signal": 11
+},
+
+"battery": {
+  "states": { "good": 95, "warning": 30, "critical": 15 },
+
+  "format": "{icon}",
+  "format-alt": "{capacity}%\u2007{icon}",
+  "format-charging": "{capacity}%\u2007{icon} ",
+  "format-plugged": "{capacity}%\u2007{icon} ",
+  "min-length":4,
+  "align":0.5,
+  "on-click": "mode",
+  "format-icons": ["","","","",""]
+},
+
+"custom/launcher": {
+    "format": "󰈸",
+    "on-click": "bash $HOME/.config/rofi/launcher.sh",
+    "on-click-right": "bash $HOME/.config/rofi/run.sh",
+ }
+},
+  { "position": "left", 
+    "layer": "top", 
+    "modules-center": ["cpu", "memory"],
+
+ "memory": {
+    "format": "󰍛 {}%",
+    "format-alt": "{used}/{total} GiB",
+    "interval": 5,
+    "on-click-right": "ghostty -e btop"
+  },
+
+  "cpu": {
+    "format": "󰻠 {usage}%",
+    "format-alt": "{avg_frequency} GHz",
+    "interval": 5,
+    "on-click-right": "ghostty -e btop"
+  },
+
+  }
+]
+

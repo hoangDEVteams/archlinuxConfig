@@ -1,0 +1,266 @@
+/* ===== Waybar “Mocha Glass” Theme =====
+ * Clean, airy, and consistent. Works on GTK3 (Waybar).
+ * Tip (Hyprland): add to hyprland.conf to get real blur:
+ *   layerrule = blur, waybar
+ *   layerrule = ignorealpha 0.15, waybar
+ *
+ * Palette (Catppuccin Mocha):
+ * base/bg   : #11111b (with alpha)
+ * surface   : #1e1e2e
+ * overlay   : #313244
+ * text      : #cdd6f4
+ * subtext   : #a6adc8
+ * accents   : mauve(#cba6f7) lavender(#b4befe) peach(#fab387) green(#a6e3a1) red(#f38ba8)
+ */
+
+/* -------- Global resets -------- */
+* {
+  margin: 0;
+  padding : 0;
+  border: none;
+  border-radius: 0;
+  font-family: Iosevka, "JetBrains Mono", FiraCode, "Noto Sans CJK";
+  font-size: 13px;
+  min-height: 0;
+}
+
+/* -------- Bar container (floating glass) -------- */
+window#waybar {
+background: rgba(173, 232, 244, 0.25) ;
+  color: #cdd6f4;
+}
+
+/* Optional: make the bar float with rounded corners.
+ * If you use  top bar full width, these margins just add breathing room. */
+window#waybar {
+  margin: 5px 5px 0 5px;                   /* top, right, bottom, left */
+  border-radius: 5px;
+}
+
+/* ==== Waybar LEFT bar: no background ==== */
+window#waybar.left {
+  background-color: transparent; 
+  border: none;
+  box-shadow: none;
+  margin: 0;        /* tùy: bỏ khoảng nổi */
+  border-radius: 0; /* tùy: bỏ bo góc */
+}
+
+window#waybar.left #cpu,
+window#waybar.left #memory {
+  background-color: rgba(30, 30, 46, 0.65);
+  border: none;   /* đúng cú pháp */
+  border-radius: 10px;
+  padding: 4px 10px;
+}
+
+
+/* Spacing between modules */
+#workspaces,
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#tray,
+#cpu,
+#memory,
+#disk,
+#window,
+#custom-launcher,
+#custom-date,
+#custom-playerctl,
+#custom-playerlabel,
+#custom-hyprpicker,
+#custom-randwall {
+  margin: 5px 5px;
+}
+
+/* Unified “chip” look for most modules */
+.chip,
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#cpu,
+#memory,
+#disk,
+#window,
+#custom-playerctl,
+#custom-playerlabel,
+#custom-hyprpicker,
+#custom-randwall,
+#tray {
+background: rgba(30, 30, 46, 0.1);
+  background: rgba(30, 30, 46, 0.65);
+  border: 1px solid rgba(49, 50, 68, 0.85);
+  border-radius: 12px;
+  padding: 5px 15px;
+  min-height: 28px;
+  color: #cdd6f4;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Labels tend to look nicer slightly brighter than icons */
+label {
+  color: #d6def8;
+}
+
+/* -------- Workspaces (pills) -------- */
+#workspaces {
+  background: transparent;
+  border: none;
+  padding: 0 2px;
+  margin-left: 5px;
+}
+#workspaces button {
+  background: rgba(30, 30, 46, 0.65);
+  color: #a6adc8;
+  border: 1px solid rgba(49, 50, 68, 0.7);
+  border-radius: 15px;
+  padding: 1px 10px;
+  margin: 2.5px 2.5px;
+}
+#workspaces button.active {
+  color: #FFEDD8;
+  background: #1B263B   ;                       /* mauve accent */
+  border-color: #2F3E46;
+}
+#workspaces button.urgent {
+  color: #FFEDD8;
+  background: #354F52;                       /* red accent */
+  border-color: #2F3E46;
+}
+#workspaces button:hover {
+  background: #415A77;
+  border-color: #0D1B2A;                     /* lavender border on hover */
+  color: #000814;
+}
+
+/* -------- Launcher (left icon) -------- */
+#custom-launcher {
+  background: linear-gradient(180deg, rgba(203,166,247,0.22), rgba(180,190,254,0.18));
+  color: #e6e9ff;
+  border: 1px solid rgba(203, 166, 247, 0.55);
+  border-radius: 100%;
+  font-size: 18px;
+  padding: 2px 16px;
+  margin-left: 10px;
+}
+#custom-launcher:hover {
+  background: rgba(203,166,247,0.35);
+  border-color: #cba6f7;
+  color: #FA003F;
+}
+
+/* -------- Clock + Date -------- */
+#clock {
+  color:  #A0C4FF ;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+#custom-date {
+  background: rgba(30, 30, 46, 0.35);
+  color: #b4befe;                             /* lavender */
+  border: 1px dashed rgba(180, 190, 254, 0.5);
+  border-radius: 12px;
+  padding: 6px 12px;
+}
+
+/* -------- Battery -------- */
+#battery {
+  background: rgba(96, 108, 56,0.4); 
+  color: #a6e3a1; 
+}                  /* green */
+#battery.charging {
+  background: rgba(166, 227, 161, 0.18);
+  border-color: rgba(166, 227, 161, 0.55);
+  color: #a6e3a1;
+}
+#battery.warning:not(.charging) {
+  background: rgba(243, 139, 168, 0.18);
+  border-color: rgba(243, 139, 168, 0.8);
+  color: #f38ba8;
+}
+
+/* -------- Backlight / Network / Audio -------- */
+#backlight {
+  color: #fab387;                             /* peach */
+  background: rgba(250, 179, 135, 0.14);
+  border-color: rgba(250, 179, 135, 0.55);
+}
+#network {
+  color: #0077B6;                       
+  background: rgba(155, 246, 255, 0.35) ;
+  border-color: rgba(3, 4, 94, 0.35);
+}
+#pulseaudio {
+  color: #A2D2FF;                       
+  background: rgba(180, 190, 254, 0.30);
+  border-color: rgba(180, 190, 254, 0.55);
+}
+#pulseaudio.muted {
+  color: #778DA9;
+  background: rgba(49, 50, 68, 0.40);
+  border-color: rgba(49, 50, 68, 0.80);
+}
+
+/* -------- System metrics -------- */
+#cpu { 
+  font-weight: 700;
+  font-size: 15px;
+  color: #fab387; 
+}
+#memory { 
+  font-weight: 700;
+  font-size: 15px;
+  color: #cba6f7; 
+}
+
+/* -------- Tray -------- */
+#tray {
+  padding: 2px 6px;
+}
+#tray image {
+  margin: 0 5px;
+  -gtk-icon-transform: scale(1.0);           /* consistent size */
+}
+
+/* -------- Window title (only when not empty) -------- */
+#window {
+  color: #e6e9ff;
+  font-weight: 500;
+}
+
+/* -------- Player -------- */
+#custom-playerctl {
+  padding: 5px 10px;
+}
+#custom-playerlabel {
+  background: rgba(30, 30, 46, 0.35);
+  border: 1px solid rgba(49, 50, 68, 0.7);
+  border-radius: 12px;
+  padding: 5px 10px;
+  margin-left: 4px;
+  color: #a6adc8;
+}
+
+/* -------- Random wallpaper & picker -------- */
+#custom-randwall {
+  color: #fab387;
+}
+#custom-hyprpicker {
+  color: #94e2d5;
+}
+
+/* ----------------mic----------*/
+#custom-mic-indicator {
+  padding: 4px 10px;
+  border: 1px solid rgba(166, 227, 161, 0.6); /* xanh dịu khi active */
+  border-radius: 10px;
+  color: #a6e3a1;
+}
+
