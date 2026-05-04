@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Cliphist
-TryExec=/usr/bin/distrobox
-Exec=/usr/bin/distrobox enter --name trantbox-services -- /usr/bin/wl-paste --watch cliphist store
-Terminal=false
-Type=Application
-Categories=System;Utility;
-StartupNotify=false
-OnlyShowIn=Hyprland

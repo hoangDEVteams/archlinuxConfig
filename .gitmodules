@@ -1,12 +1,6 @@
-[submodule "trantbox-dev/distrobox-home/trantbox-dev/.tmux/plugins/tpm"]
-	path = trantbox-dev/distrobox-home/trantbox-dev/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule "trant/.oh-my-zsh"]
-	path = trant/.oh-my-zsh
-	url = https://github.com/ohmyzsh/ohmyzsh.git
-[submodule "trant/.zsh.d/custom/plugins/zsh-syntax-highlighting"]
-	path = trant/.zsh.d/custom/plugins/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "trant/.zsh.d/custom/plugins/zsh-autosuggestions"]
-	path = trant/.zsh.d/custom/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "zsh/.zsh.d/custom/plugins/zsh-autosuggestions"]
+	path = zsh/.zsh.d/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/.zsh.d/custom/plugins/zsh-syntax-highlighting"]
+	path = zsh/.zsh.d/custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
