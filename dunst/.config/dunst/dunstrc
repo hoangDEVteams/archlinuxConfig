@@ -1,0 +1,64 @@
+[global]
+    follow = mouse
+    indicate_hidden = yes
+    offset = 10x10
+    notification_height = 0
+    separator_height = 2
+
+    # Tăng không gian xung quanh chữ và viền cho thoáng hơn
+    padding = 15
+    horizontal_padding = 15
+    text_icon_padding = 15
+    frame_width = 2
+
+    frame_color = "#89b4fa"
+    separator_color = frame
+
+    sort = yes
+    idle_threshold = 120
+    font = monospace 10
+    line_height = 0
+    markup = full
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    word_wrap = yes
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    # Cấu hình hiển thị hình ảnh (Album Art)
+    icon_position = left
+    min_icon_size = 0
+    max_icon_size = 80
+
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/16x16/actions/:/usr/share/icons/Papirus-Dark/16x16/animations/:/usr/share/icons/Papirus-Dark/16x16/apps/:/usr/share/icons/Papirus-Dark/16x16/categories/:/usr/share/icons/Papirus-Dark/16x16/emblems/:/usr/share/icons/Papirus-Dark/16x16/emotes/:/usr/share/icons/Papirus-Dark/16x16/devices/mimetypes:/usr/share/icons/Papirus-Dark/16x16/panel/:/usr/share/icons/Papirus-Dark/16x16/places/
+
+    dmenu = /usr/bin/wofi -p dunst:
+    browser = /usr/bin/firefox --new-tab
+
+    title = Dunst
+    class = Dunst
+
+    # Bo góc mượt hơn và thời gian hiển thị hợp lý (5 giây)
+    corner_radius = 15
+    timeout = 2
+
+    # Format chuẩn để loại bỏ đường dẫn file rác
+    format = "<b>%s</b>\n%b"
+
+[urgency_low]
+    background = "#1e1e2ee6"
+    foreground = "#CDD6F4"
+    timeout = 2
+
+[urgency_normal]
+    background = "#1e1e2ee6"
+    foreground = "#CDD6F4"
+    timeout = 2
+
+[urgency_critical]
+    background = "#1e1e2ee6"
+    foreground = "#CDD6F4"
+    frame_color = "#FAB387"
+    timeout = 0

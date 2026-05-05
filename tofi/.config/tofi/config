@@ -1,0 +1,32 @@
+# --- Window & Layout ---
+width = 40%
+height = 35%
+anchor = center
+corner-radius = 12
+
+# --- Background & Main Border ---
+background-color = #11111be6
+outline-width = 0
+border-width = 2
+border-color = #89b4fa
+
+# --- Text Appearance ---
+font = "JetBrainsMono Nerd Font"
+font-size = 14
+prompt-text = " : "
+prompt-color = #89D2FC
+text-color = #cdd6f4
+padding-top = 20
+padding-left = 20
+padding-right = 20
+
+result-spacing = 15
+num-results = 7
+
+# Tạo border trắng cho ô được chọn
+selection-color = #FF617E
+background-color = #11111bd9
+
+# --- Behavior ---
+hide-cursor = true
+drun-launch = true
